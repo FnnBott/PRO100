@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     Jack player = new Jack("Main Character", 1, 1 , 1);
     Jack enemy = new Jack("Glass", 50, 1 , 1);
     Card slap,doubleSlap,defense;
-    int score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
         slap = new Card(1,"Slap",0,1);
         doubleSlap = new Card(2,"Double Slap",0,3);
         defense = new Card(1,"Defend",1,0);
-        score++;
-
     }
 
     public void giveCards(View v){
