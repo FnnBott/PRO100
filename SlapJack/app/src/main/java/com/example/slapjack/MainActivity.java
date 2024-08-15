@@ -1,7 +1,6 @@
 package com.example.slapjack;
 
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,12 +16,13 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     Hand hand = new Hand();
-    ImageButton card1,card2,card3,card4;
+    ImageButton cardInHandPosition1, cardInHandPosition2, cardInHandPosition3, cardInHandPosition4;
     ProgressBar enemyHealth;
     Button giveCardsButton;
     Jack player = new Jack("Main Character", 1, 1 , 1);
     Jack enemy = new Jack("Glass", 50, 1 , 1);
     Card slap,doubleSlap,defense;
+    Boolean isPlayersTurn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onInit() {
-        card1 = findViewById(R.id.card1);
-        card2 = findViewById(R.id.card2);
-        card3 = findViewById(R.id.card3);
-        card4 = findViewById(R.id.card4);
+        cardInHandPosition1 = findViewById(R.id.cardInHandPosition1);
+        cardInHandPosition2 = findViewById(R.id.cardInHandPosition2);
+        cardInHandPosition3 = findViewById(R.id.cardInHandPosition3);
+        cardInHandPosition4 = findViewById(R.id.cardInHandPosition4);
 
         giveCardsButton = findViewById(R.id.giveCardsButton);
         enemyHealth = findViewById(R.id.enemyHealth);
@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void giveCards(View v){
-        card1.setVisibility(View.VISIBLE);
-        card2.setVisibility(View.VISIBLE);
-        card3.setVisibility(View.VISIBLE);
-        card4.setVisibility(View.VISIBLE);
+        cardInHandPosition1.setVisibility(View.VISIBLE);
+        cardInHandPosition2.setVisibility(View.VISIBLE);
+        cardInHandPosition3.setVisibility(View.VISIBLE);
+        cardInHandPosition4.setVisibility(View.VISIBLE);
         Random rand = new Random();
         hand.clear();
         for (int i = 1; i <= 4; i++)
@@ -67,16 +67,16 @@ public class MainActivity extends AppCompatActivity {
                     hand.addToHand(slap);
                     switch (i){
                         case 1:
-                            card1.setImageResource(R.drawable.splapexample);
+                            cardInHandPosition1.setImageResource(R.drawable.splapexample);
                             break;
                         case 2:
-                            card2.setImageResource(R.drawable.splapexample);
+                            cardInHandPosition2.setImageResource(R.drawable.splapexample);
                             break;
                         case 3:
-                            card3.setImageResource(R.drawable.splapexample);
+                            cardInHandPosition3.setImageResource(R.drawable.splapexample);
                             break;
                         case 4:
-                            card4.setImageResource(R.drawable.splapexample);
+                            cardInHandPosition4.setImageResource(R.drawable.splapexample);
                             break;
                     }
                     break;
@@ -84,16 +84,16 @@ public class MainActivity extends AppCompatActivity {
                     hand.addToHand(doubleSlap);
                     switch (i){
                         case 1:
-                            card1.setImageResource(R.drawable.doubleslapexample);
+                            cardInHandPosition1.setImageResource(R.drawable.doubleslapexample);
                             break;
                         case 2:
-                            card2.setImageResource(R.drawable.doubleslapexample);
+                            cardInHandPosition2.setImageResource(R.drawable.doubleslapexample);
                             break;
                         case 3:
-                            card3.setImageResource(R.drawable.doubleslapexample);
+                            cardInHandPosition3.setImageResource(R.drawable.doubleslapexample);
                             break;
                         case 4:
-                            card4.setImageResource(R.drawable.doubleslapexample);
+                            cardInHandPosition4.setImageResource(R.drawable.doubleslapexample);
                             break;
                     }
                     break;
@@ -101,16 +101,16 @@ public class MainActivity extends AppCompatActivity {
                     hand.addToHand(defense);
                     switch (i){
                         case 1:
-                            card1.setImageResource(R.drawable.blockexample);
+                            cardInHandPosition1.setImageResource(R.drawable.blockexample);
                             break;
                         case 2:
-                            card2.setImageResource(R.drawable.blockexample);
+                            cardInHandPosition2.setImageResource(R.drawable.blockexample);
                             break;
                         case 3:
-                            card3.setImageResource(R.drawable.blockexample);
+                            cardInHandPosition3.setImageResource(R.drawable.blockexample);
                             break;
                         case 4:
-                            card4.setImageResource(R.drawable.blockexample);
+                            cardInHandPosition4.setImageResource(R.drawable.blockexample);
                             break;
                     }
                     break;
@@ -134,25 +134,31 @@ public class MainActivity extends AppCompatActivity {
     public void cardClicked(int card){
         switch (card){
             case 1:
-                card1.setVisibility(View.INVISIBLE);
-                cardAction(card);
+                cardInHandPosition1.setVisibility(View.INVISIBLE);
+                playerCardAction(card);
                 break;
             case 2:
-                card2.setVisibility(View.INVISIBLE);
-                cardAction(card);
+                cardInHandPosition2.setVisibility(View.INVISIBLE);
+                playerCardAction(card);
                 break;
             case 3:
-                card3.setVisibility(View.INVISIBLE);
-                cardAction(card);
+                cardInHandPosition3.setVisibility(View.INVISIBLE);
+                playerCardAction(card);
                 break;
             case 4:
-                card4.setVisibility(View.INVISIBLE);
-                cardAction(card);
+                cardInHandPosition4.setVisibility(View.INVISIBLE);
+                playerCardAction(card);
                 break;
         }
     }
 
-    private void cardAction( int card) {
+    private void enemyCardAction(String name){
+        if(!isPlayersTurn){
+
+        }
+    }
+
+    private void playerCardAction(int card) {
         if (enemy.health >= 0) {
             System.out.println(enemy.health);
             if (hand.getCardName(card).equals("Slap")) {
@@ -160,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (hand.getCardName(card).equals("Double Slap")) {
                 enemy.health -= doubleSlap.attack + player.power;
             } else if (hand.getCardName(card).equals("Defend")) {
+                player.guard += 2;
             }
             System.out.println(enemy.health);
             enemyHealth.setScaleX((float) enemy.health / 100);
