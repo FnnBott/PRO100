@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +21,10 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar enemyHealth;
     Button giveCardsButton;
     Jack player = new Jack("Main Character", 1, 1 , 1);
-    Jack enemy = new Jack("Glass", 50, 1 , 1);
-    Card slap,doubleSlap,defense;
+    Jack enemy = new Jack("Glass Jack", 50, 1 , 1);
+    Card slap,doubleSlap,tense;
     Boolean isPlayersTurn;
+    TextView enemyName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +48,14 @@ public class MainActivity extends AppCompatActivity {
         enemyHealth = findViewById(R.id.enemyHealth);
         enemyHealth.setScaleX((float) enemy.health /100);
 
+        enemyName = findViewById(R.id.enemyName);
+
         slap = new Card(1,"Slap",0,1);
         doubleSlap = new Card(2,"Double Slap",0,3);
-        defense = new Card(1,"Defend",1,0);
+        tense = new Card(1,"Defend",1,0);
+
+        enemyName.setText(enemy.name);
+
     }
 
     public void giveCards(View v){
@@ -67,16 +74,16 @@ public class MainActivity extends AppCompatActivity {
                     hand.addToHand(slap);
                     switch (i){
                         case 1:
-                            cardInHandPosition1.setImageResource(R.drawable.splapexample);
+                            cardInHandPosition1.setImageResource(R.drawable.card_slap);
                             break;
                         case 2:
-                            cardInHandPosition2.setImageResource(R.drawable.splapexample);
+                            cardInHandPosition2.setImageResource(R.drawable.card_slap);
                             break;
                         case 3:
-                            cardInHandPosition3.setImageResource(R.drawable.splapexample);
+                            cardInHandPosition3.setImageResource(R.drawable.card_slap);
                             break;
                         case 4:
-                            cardInHandPosition4.setImageResource(R.drawable.splapexample);
+                            cardInHandPosition4.setImageResource(R.drawable.card_slap);
                             break;
                     }
                     break;
@@ -84,33 +91,33 @@ public class MainActivity extends AppCompatActivity {
                     hand.addToHand(doubleSlap);
                     switch (i){
                         case 1:
-                            cardInHandPosition1.setImageResource(R.drawable.doubleslapexample);
+                            cardInHandPosition1.setImageResource(R.drawable.card_doubleslap);
                             break;
                         case 2:
-                            cardInHandPosition2.setImageResource(R.drawable.doubleslapexample);
+                            cardInHandPosition2.setImageResource(R.drawable.card_doubleslap);
                             break;
                         case 3:
-                            cardInHandPosition3.setImageResource(R.drawable.doubleslapexample);
+                            cardInHandPosition3.setImageResource(R.drawable.card_doubleslap);
                             break;
                         case 4:
-                            cardInHandPosition4.setImageResource(R.drawable.doubleslapexample);
+                            cardInHandPosition4.setImageResource(R.drawable.card_doubleslap);
                             break;
                     }
                     break;
                 case 3:
-                    hand.addToHand(defense);
+                    hand.addToHand(tense);
                     switch (i){
                         case 1:
-                            cardInHandPosition1.setImageResource(R.drawable.blockexample);
+                            cardInHandPosition1.setImageResource(R.drawable.card_tense);
                             break;
                         case 2:
-                            cardInHandPosition2.setImageResource(R.drawable.blockexample);
+                            cardInHandPosition2.setImageResource(R.drawable.card_tense);
                             break;
                         case 3:
-                            cardInHandPosition3.setImageResource(R.drawable.blockexample);
+                            cardInHandPosition3.setImageResource(R.drawable.card_tense);
                             break;
                         case 4:
-                            cardInHandPosition4.setImageResource(R.drawable.blockexample);
+                            cardInHandPosition4.setImageResource(R.drawable.card_tense);
                             break;
                     }
                     break;
