@@ -21,49 +21,41 @@
         app:layout_constraintVertical_bias="0.784">
 
         <ImageButton
-            android:id="@+id/card1"
-            android:layout_width="wrap_content"
+            android:id="@+id/cardInHandPosition1"
+            android:layout_width="127dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="card1clicked"
-            app:srcCompat="@drawable/card_example" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/card_chalk" />
 
         <ImageButton
-            android:id="@+id/card2"
-            android:layout_width="wrap_content"
+            android:id="@+id/cardInHandPosition2"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="card2clicked"
-            app:srcCompat="@drawable/card_example" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/card_dodge" />
 
         <ImageButton
-            android:id="@+id/card3"
-            android:layout_width="wrap_content"
+            android:id="@+id/cardInHandPosition3"
+            android:layout_width="141dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="card3clicked"
-            app:srcCompat="@drawable/card_example" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/card_doubleslap" />
 
         <ImageButton
-            android:id="@+id/card4"
-            android:layout_width="wrap_content"
+            android:id="@+id/cardInHandPosition4"
+            android:layout_width="143dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="card4clicked"
-            app:srcCompat="@drawable/card_example" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/card_hydrate" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/giveCardsButton"
@@ -85,8 +77,35 @@
         android:layout_height="40dp"
         android:scaleX="1"
         android:scaleY="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.072" />
+
+    <TextView
+        android:id="@+id/enemyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.043" />
+
+    <ImageView
+        android:id="@+id/enemyAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.153"
+        app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
