@@ -2,6 +2,10 @@ package com.example.slapjack;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -59,10 +63,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void giveCards(View v){
-        cardInHandPosition1.setVisibility(View.VISIBLE);
-        cardInHandPosition2.setVisibility(View.VISIBLE);
-        cardInHandPosition3.setVisibility(View.VISIBLE);
-        cardInHandPosition4.setVisibility(View.VISIBLE);
         Random rand = new Random();
         hand.clear();
         for (int i = 1; i <= 4; i++)
@@ -122,41 +122,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
             }
-
         }
+        FadeInAnimationCalls(giveCardsButton);
     }
     public void card1clicked(View v){
         cardClicked(1);
     }
     public void card2clicked(View v){
         cardClicked(2);
-    }public void card3clicked(View v){
+    }
+    public void card3clicked(View v){
         cardClicked(3);
-    }public void card4clicked(View v){
+    }
+    public void card4clicked(View v){
         cardClicked(4);
     }
 
 
 
-    public void cardClicked(int card){
-        switch (card){
-            case 1:
-                cardInHandPosition1.setVisibility(View.INVISIBLE);
-                playerCardAction(card);
-                break;
-            case 2:
-                cardInHandPosition2.setVisibility(View.INVISIBLE);
-                playerCardAction(card);
-                break;
-            case 3:
-                cardInHandPosition3.setVisibility(View.INVISIBLE);
-                playerCardAction(card);
-                break;
-            case 4:
-                cardInHandPosition4.setVisibility(View.INVISIBLE);
-                playerCardAction(card);
-                break;
-        }
+    public void cardClicked(int card) {
+        FadeOutAnimationCalls(card);
+        //playerCardAction(card);
     }
 
     private void enemyCardAction(String name){
@@ -177,6 +163,50 @@ public class MainActivity extends AppCompatActivity {
             }
             System.out.println(enemy.health);
             enemyHealth.setScaleX((float) enemy.health / 100);
+        }
+    }
+    private void FadeOutAnimationCalls(int cardToAnimate){
+        Animation fadeOut = new AlphaAnimation(1, 0);
+        fadeOut.setInterpolator(new LinearInterpolator());
+        fadeOut.setDuration(500);
+        fadeOut.setFillAfter(true);
+        try {
+            switch (cardToAnimate) {
+                case 1:
+                    cardInHandPosition1.setOnClickListener(cardUseAnim -> cardInHandPosition1.startAnimation(fadeOut));
+                    break;
+                case 2:
+                    cardInHandPosition2.setOnClickListener(cardUseAnim -> cardInHandPosition2.startAnimation(fadeOut));
+                    break;
+                case 3:
+                    cardInHandPosition3.setOnClickListener(cardUseAnim -> cardInHandPosition3.startAnimation(fadeOut));
+                    break;
+                case 4:
+                    cardInHandPosition4.setOnClickListener(cardUseAnim -> cardInHandPosition4.startAnimation(fadeOut));
+                    break;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    private void FadeInAnimationCalls(Button button){
+        ImageButton[] btnList = {cardInHandPosition1, cardInHandPosition2, cardInHandPosition3, cardInHandPosition4};
+        try{
+            for (ImageButton btn : btnList) {
+                Animation fadeIn = new AlphaAnimation(0, 1);
+                fadeIn.setDuration(100);
+                fadeIn.setInterpolator(new LinearInterpolator());
+
+                btn.startAnimation(fadeIn);
+                btn.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        btn.setVisibility(View.VISIBLE);
+                    }
+                }, 100);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 }
