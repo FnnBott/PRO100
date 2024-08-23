@@ -166,12 +166,13 @@ public class MainActivity extends AppCompatActivity {
     public void cardClicked(int card) {
         FadeOutAnimationCalls(card);
         //playerCardAction(card);
-    }
+
         isPlayersTurn = false;
         enemyCardAction(getRandomCard().name);
 
 
     }
+
 
     private void enemyCardAction(String cardName){
         if (enemy.health >= 0 && player.health >= 0 && !isPlayersTurn) {
