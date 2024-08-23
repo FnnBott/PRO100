@@ -11,3 +11,5 @@ Each card has a unique ability that allows you to modify your slaps.
 You start 4 cards in your hand, each one can cost from 0 to 4.
 
 You can use cards that increase your damage, heal damage from your opponents attacks, or defend against your opponent.
+
+Those are the basics of Slap Jack.
