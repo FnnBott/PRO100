@@ -75,8 +75,10 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="170dp"
         android:layout_height="40dp"
+        android:indeterminateDrawable="@drawable/health_bar"
+        android:progressDrawable="@drawable/health_bar"
         android:scaleX="1"
-        android:scaleY="2"
+        android:scaleY=".2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -89,8 +91,10 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="170dp"
         android:layout_height="40dp"
+        android:indeterminateDrawable="@drawable/health_bar"
+        android:progressDrawable="@drawable/health_bar"
         android:scaleX="1"
-        android:scaleY="2"
+        android:scaleY=".2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -113,13 +117,13 @@
 
     <ImageView
         android:id="@+id/enemyAvatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="138dp"
+        android:layout_height="143dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.153"
-        app:srcCompat="@android:mipmap/sym_def_app_icon" />
+        app:srcCompat="@drawable/jackblack" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
