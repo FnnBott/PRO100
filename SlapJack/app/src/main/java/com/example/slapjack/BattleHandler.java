@@ -48,18 +48,23 @@ public class BattleHandler {
 
     void playerCardAction(int card) {
         if (enemy.health >= 0 && player.health >= 0 && isPlayersTurn) {
-            System.out.println("This is the enemy health" + enemy.health);
+//            System.out.println("This is the enemy health" + enemy.health);
+            battleDescription.setText("This is the enemy health" + enemy.health);
             if (hand.getCardName(card).equals("Slap")) {
                 enemy.health -= card_Slap.attack + player.power;
-                System.out.println("Player used Slap");
+//                System.out.println("Player used Slap");
+                battleDescription.setText("Player used Slap");
             } else if (hand.getCardName(card).equals("Double Slap")) {
                 enemy.health -= card_DoubleSlap.attack + player.power;
-                System.out.println("Player used Double Slap");
+//                System.out.println("Player used Double Slap");
+                battleDescription.setText("Player used Double Slap");
             } else if (hand.getCardName(card).equals("Tense")) {
                 player.guard += card_Tense.defense;
-                System.out.println("Player used Tense");
+//                System.out.println("Player used Tense");
+                battleDescription.setText("Player used Tense");
             }
-            System.out.println("This is the Enemy health" + enemy.health);
+//            System.out.println("This is the Enemy health" + enemy.health);
+            battleDescription.setText("This is the Enemy health" + enemy.health)
             enemyHealth.setScaleX((float) enemy.health / 100);
         }
         if (enemy.health <=0){
