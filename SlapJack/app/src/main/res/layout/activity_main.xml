@@ -126,4 +126,17 @@
         app:layout_constraintVertical_bias="0.153"
         app:srcCompat="@drawable/jackblack" />
 
+    <TextView
+        android:id="@+id/battleDescription"
+        android:layout_width="147dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="71dp"
+        android:layout_marginBottom="55dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/playerHealth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enemyAvatar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

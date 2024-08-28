@@ -39,4 +39,6 @@ public class Card {
         this.defense = defense;
         this.attack = attack;
     }
+
 }
+
