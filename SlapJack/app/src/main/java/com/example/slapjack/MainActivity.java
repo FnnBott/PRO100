@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Button giveCardsButton;
     Jack player = new Jack("Main Character", 100, 1 , 1);
     Jack enemy = new Jack("Glass Jack", 50, 1 , 1);
-    TextView enemyName,battleDescription;
+    TextView enemyName,battleDescription, energyValue;
     Integer energy = 3;
 
     BattleHandler battleHandler = new BattleHandler(enemy,player,enemyHealth,playerHealth, battleDescription);
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     public void giveCards(View v){
         battleHandler.enemyCardAction(battleHandler.getRandomCard().name);
         energy = 3;
+        energyValue.setText(String.valueOf(energy));
         if (player.health > 0 && enemy.health > 0) {
             battleHandler.hand.clear();
             for (int i = 1; i <= 4; i++) {
@@ -146,7 +147,8 @@ public class MainActivity extends AppCompatActivity {
             energy -= battleHandler.hand.cards.get(0).cost;
 
         }
-        System.out.println(energy);
+//        System.out.println(energy);
+        energyValue.setText(String.valueOf(energy));
 
     }
     public void card2clicked(View v){
@@ -158,7 +160,8 @@ public class MainActivity extends AppCompatActivity {
             energy -= battleHandler.hand.cards.get(1).cost;
 
         }
-        System.out.println(energy);
+//        System.out.println(energy);
+        energyValue.setText(String.valueOf(energy));
 
     }
     public void card3clicked(View v){
@@ -170,7 +173,9 @@ public class MainActivity extends AppCompatActivity {
             energy -= battleHandler.hand.cards.get(2).cost;
 
         }
-        System.out.println(energy);
+//        System.out.println(energy);
+        energyValue.setText(String.valueOf(energy));
+
 
     }
     public void card4clicked(View v){
@@ -182,7 +187,8 @@ public class MainActivity extends AppCompatActivity {
             energy -= battleHandler.hand.cards.get(3).cost;
 
         }
-        System.out.println(energy);
+//        System.out.println(energy);
+        energyValue.setText(String.valueOf(energy));
 
     }
 
