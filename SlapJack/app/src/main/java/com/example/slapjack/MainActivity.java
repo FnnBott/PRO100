@@ -2,10 +2,6 @@ package com.example.slapjack;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -17,7 +13,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton cardInHandPosition1, cardInHandPosition2, cardInHandPosition3, cardInHandPosition4;
@@ -27,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Jack enemy = new Jack("Glass Jack", 50, 1 , 1);
     TextView enemyName,battleDescription, energyValue;
     Integer energy = 3;
+    Boolean initializing;
 
     BattleHandler battleHandler = new BattleHandler(enemy,player,enemyHealth,playerHealth, battleDescription);
 
@@ -39,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            initializing = true;
             giveCards(v);
             return insets;
         });
@@ -65,15 +62,20 @@ public class MainActivity extends AppCompatActivity {
         battleDescription = findViewById(R.id.battleDescription);
         enemyName.setText(enemy.name);
 
+        energyValue = findViewById(R.id.energyValue);
+
 
 
         battleHandler = new BattleHandler(enemy,player,enemyHealth,playerHealth, battleDescription);
+        initializing = false;
     }
 
 
 
     public void giveCards(View v){
-        battleHandler.enemyCardAction(battleHandler.getRandomCard().name);
+        if (!initializing) {
+            battleHandler.enemyCardAction(battleHandler.getRandomCard().name);
+        }
         energy = 3;
         energyValue.setText(String.valueOf(energy));
         if (player.health > 0 && enemy.health > 0) {
@@ -147,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             energy -= battleHandler.hand.cards.get(0).cost;
 
         }
-//        System.out.println(energy);
+
         energyValue.setText(String.valueOf(energy));
 
     }
@@ -160,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             energy -= battleHandler.hand.cards.get(1).cost;
 
         }
-//        System.out.println(energy);
+
         energyValue.setText(String.valueOf(energy));
 
     }
@@ -173,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
             energy -= battleHandler.hand.cards.get(2).cost;
 
         }
-//        System.out.println(energy);
+
         energyValue.setText(String.valueOf(energy));
 
 
@@ -187,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
             energy -= battleHandler.hand.cards.get(3).cost;
 
         }
-//        System.out.println(energy);
+
         energyValue.setText(String.valueOf(energy));
 
     }
